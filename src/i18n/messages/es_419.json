@@ -162,5 +162,7 @@
   "reset.server.rate.limit.error": "Demasiadas solicitudes.",
   "reset.password.success.heading": "Restablecimiento de la contraseña completado.",
   "reset.password.success": "Tu contraseña ha sido restablecida. Acceda a tu cuenta.",
-  "rate.limit.error": "Se ha producido un error debido a demasiadas solicitudes. Por favor, inténtalo de nuevo después de algún tiempo."
+  "rate.limit.error": "Se ha producido un error debido a demasiadas solicitudes. Por favor, inténtalo de nuevo después de algún tiempo.",
+  "uamx.uam.domain.login.forbidden.message": "Lo sentimos, no está autorizado para acceder a UAMx con un email del dominio '@*uam.es'. Por favor utiliza el botón ID-UAM.",
+  "uamx.uam.domain.register.forbidden.message": "Lo sentimos, no es posible registrar un email del dominio '@*uam.es' en UAMx. Por favor utiliza el botón ID-UAM."
 }
