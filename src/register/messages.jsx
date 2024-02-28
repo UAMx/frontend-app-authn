@@ -201,6 +201,12 @@ const messages = defineMessages({
     defaultMessage: 'Did you mean',
     description: 'Did you mean alert suggestion',
   },
+  'uamx.uam.domain.register.forbidden.message': {
+    id: 'uamx.uam.domain.register.forbidden.message',
+    defaultMessage: 'We are sorry, you are not authorized to register to UAMx with an uam.es email.'
+        + 'Please press the ID-UAM button below',
+    description: 'Error message for forbidden message with register with an uam.es email',
+  }
 });
 
 export default messages;

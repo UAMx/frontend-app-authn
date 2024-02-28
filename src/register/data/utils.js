@@ -60,6 +60,7 @@ export function validateEmailAddress(value, username, domainName) {
   const [serviceLevelDomain, topLevelDomain] = domainName.split('.');
   const tldSuggestion = !DEFAULT_TOP_LEVEL_DOMAINS.includes(topLevelDomain);
   const serviceSuggestion = getLevenshteinSuggestion(serviceLevelDomain, DEFAULT_SERVICE_PROVIDER_DOMAINS, 2);
+  const hasDomainUAM = value.endsWith('uam.es');
 
   if (DEFAULT_SERVICE_PROVIDER_DOMAINS.includes(serviceSuggestion || serviceLevelDomain)) {
     suggestion = `${username}@${serviceSuggestion || serviceLevelDomain}.com`;
@@ -80,6 +81,12 @@ export function validateEmailAddress(value, username, domainName) {
   }
 
   if (!hasMultipleSubdomains && tldSuggestion) {
+    validation.hasError = true;
+  }
+
+  if (hasDomainUAM) {
+    validation.messageKey = 'uamx.uam.domain.register.forbidden.message';
+    validation.type = 'error';
     validation.hasError = true;
   }
 

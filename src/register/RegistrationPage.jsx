@@ -131,6 +131,7 @@ const RegistrationPage = (props) => {
   useEffect(() => {
     if (!userPipelineDataLoaded && thirdPartyAuthApiStatus === COMPLETE_STATE) {
       const { autoSubmitRegForm, pipelineUserDetails, errorMessage } = thirdPartyAuthContext;
+      console.log('---------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
       if (errorMessage) {
         setErrorCode(prevState => ({ type: TPA_AUTHENTICATION_FAILURE, count: prevState.count + 1 }));
       } else if (autoSubmitRegForm) {
@@ -275,7 +276,11 @@ const RegistrationPage = (props) => {
           } else {
             const response = validateEmailAddress(value, username, domainName);
             if (response.hasError) {
-              fieldError = formatMessage(messages['email.invalid.format.error']);
+              if (response.messageKey) {
+                fieldError = formatMessage(messages[response.messageKey]);
+              } else {
+                fieldError = formatMessage(messages['email.invalid.format.error']);
+              }
               delete response.hasError;
             } else if (shouldValidateFromBackend) {
               validateFromBackend(payload);
