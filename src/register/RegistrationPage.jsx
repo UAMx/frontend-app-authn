@@ -307,6 +307,13 @@ const RegistrationPage = (props) => {
               failureCount={errorCode.count}
               context={{ provider: currentProvider, errorMessage: thirdPartyAuthErrorMessage }}
             />
+            <ThirdPartyAuth
+                currentProvider={currentProvider}
+                providers={providers}
+                secondaryProviders={secondaryProviders}
+                handleInstitutionLogin={handleInstitutionLogin}
+                thirdPartyAuthApiStatus={thirdPartyAuthApiStatus}
+              />
             <Form id="registration-form" name="registration-form">
               <NameField
                 name="name"
