@@ -221,6 +221,16 @@ const messages = defineMessages({
     defaultMessage: 'We are sorry, you are not authorized to access to UAMx with an uam.es email.'
         + 'Please press the ID-UAM button below',
     description: 'Error message for forbidden message with login with an uam.es email',
+  },
+  'uamx.uam.domain.registration.other.users': {
+    id: 'uamx.uam.domain.registration.other.users',
+    defaultMessage: 'Other users:',
+    description: 'Text to be shown before login form when auth is enabled',
+  },
+  'uamx.uam.domain.registration.other.options.heading': {
+    id: 'uamx.uam.domain.registration.other.options.heading',
+    defaultMessage: 'Users with UAM email:',
+    description: 'A message that appears above ID-UAM third party auth provider',
   }
 });
 

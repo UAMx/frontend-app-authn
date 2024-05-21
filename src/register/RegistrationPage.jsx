@@ -550,6 +550,13 @@ const RegistrationPage = (props) => {
               failureCount={errorCode.count}
               context={{ provider: currentProvider, errorMessage: thirdPartyAuthContext.errorMessage }}
             />
+            <ThirdPartyAuth
+                currentProvider={currentProvider}
+                providers={providers}
+                secondaryProviders={secondaryProviders}
+                handleInstitutionLogin={handleInstitutionLogin}
+                thirdPartyAuthApiStatus={thirdPartyAuthApiStatus}
+              />
             <Form id="registration-form" name="registration-form">
               <FormGroup
                 name="name"
@@ -622,13 +629,6 @@ const RegistrationPage = (props) => {
                 }}
                 onClick={handleSubmit}
                 onMouseDown={(e) => e.preventDefault()}
-              />
-              <ThirdPartyAuth
-                currentProvider={currentProvider}
-                providers={providers}
-                secondaryProviders={secondaryProviders}
-                handleInstitutionLogin={handleInstitutionLogin}
-                thirdPartyAuthApiStatus={thirdPartyAuthApiStatus}
               />
             </Form>
           </div>

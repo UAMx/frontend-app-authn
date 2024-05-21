@@ -30,7 +30,7 @@ const ThirdPartyAuth = (props) => {
     <>
       {((isEnterpriseLoginDisabled && isInstitutionAuthActive) || isSocialAuthActive) && (
         <div className="mt-4 mb-3 h4">
-          {formatMessage(messages['registration.other.options.heading'])}
+          {formatMessage(messages['uamx.uam.domain.registration.other.options.heading'])}
         </div>
       )}
 
@@ -49,6 +49,12 @@ const ThirdPartyAuth = (props) => {
               <SocialAuthProviders socialAuthProviders={providers} referrer={REGISTER_PAGE} />
             </div>
           )}
+        </>
+      )}
+      {((isEnterpriseLoginDisabled && isInstitutionAuthActive) || isSocialAuthActive) && (
+        <>
+          <hr/>
+          <div class="mt-4 mb-3 h4">{formatMessage(messages['uamx.uam.domain.registration.other.users'])}</div>
         </>
       )}
     </>

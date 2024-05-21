@@ -173,7 +173,7 @@ class LoginPage extends React.Component {
         {(isSocialAuthActive || (isEnterpriseLoginDisabled && isInstitutionAuthActive))
           && (
             <div className="mt-4 mb-3 h4">
-              {intl.formatMessage(messages['login.other.options.heading'])}
+              {intl.formatMessage(messages['uamx.uam.domain.registration.other.options.heading'])}
             </div>
           )}
 
@@ -199,6 +199,13 @@ class LoginPage extends React.Component {
                 <SocialAuthProviders socialAuthProviders={providers} />
               </div>
             )}
+            {(isSocialAuthActive || (isEnterpriseLoginDisabled && isInstitutionAuthActive))
+              && (
+                <>
+                  <hr />
+                  <div class="mt-4 mb-3 h4">{intl.formatMessage(messages['uamx.uam.domain.registration.other.users'])}</div >
+                </>
+              )}
           </>
         )}
       </>
@@ -263,6 +270,7 @@ class LoginPage extends React.Component {
           {submitState === DEFAULT_STATE && this.state.isSubmitted ? windowScrollTo({ left: 0, top: 0, behavior: 'smooth' }) : null}
           {activationMsgType && <AccountActivationMessage messageType={activationMsgType} />}
           {this.props.resetPassword && !this.props.loginError ? <ResetPasswordSuccess /> : null}
+          {this.renderThirdPartyAuth(providers, secondaryProviders, currentProvider, thirdPartyAuthApiStatus, intl)}
           <Form name="sign-in-form" id="sign-in-form">
             <FormGroup
               name="emailOrUsername"
@@ -308,7 +316,6 @@ class LoginPage extends React.Component {
             >
               {intl.formatMessage(messages['forgot.password'])}
             </Link>
-            {this.renderThirdPartyAuth(providers, secondaryProviders, currentProvider, thirdPartyAuthApiStatus, intl)}
           </Form>
         </div>
       </>
