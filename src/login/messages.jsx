@@ -206,6 +206,12 @@ const messages = defineMessages({
         + '{lineBreak}{lineBreak}Error Details:{lineBreak}{errorMessage}',
     description: 'Error message third party authentication pipeline fails',
   },
+  'uamx.uam.domain.login.forbidden.message': {
+    id: 'uamx.uam.domain.login.forbidden.message',
+    defaultMessage: 'We are sorry, you are not authorized to access to UAMx with an uam.es email.'
+        + 'Please press the ID-UAM button below',
+    description: 'Error message for forbidden message with login with an uam.es email',
+  }
 });
 
 export default messages;

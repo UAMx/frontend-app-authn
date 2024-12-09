@@ -21,6 +21,7 @@ import {
   NUDGE_PASSWORD_CHANGE,
   REQUIRE_PASSWORD_CHANGE,
   TPA_AUTHENTICATION_FAILURE,
+  UAMX_UAM_DOMAIN_LOGIN_FORBIDDEN
 } from './data/constants';
 import messages from './messages';
 import { windowScrollTo } from '../data/utils';
@@ -50,6 +51,14 @@ const LoginFailureMessage = (props) => {
 
   let errorMessage;
   switch (errorCode) {
+    case UAMX_UAM_DOMAIN_LOGIN_FORBIDDEN: {
+      errorList = (
+        <>
+          <p>{formatMessage(messages['uamx.uam.domain.login.forbidden.message'])}</p>
+        </>
+      );
+      break;
+    }
     case NON_COMPLIANT_PASSWORD_EXCEPTION: {
       errorMessage = (
         <>
