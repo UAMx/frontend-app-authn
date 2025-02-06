@@ -52,7 +52,7 @@ const LoginFailureMessage = (props) => {
   let errorMessage;
   switch (errorCode) {
     case UAMX_UAM_DOMAIN_LOGIN_FORBIDDEN: {
-      errorList = (
+      errorMessage = (
         <>
           <p>{formatMessage(messages['uamx.uam.domain.login.forbidden.message'])}</p>
         </>
