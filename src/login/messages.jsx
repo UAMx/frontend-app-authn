@@ -209,7 +209,7 @@ const messages = defineMessages({
   'uamx.uam.domain.login.forbidden.message': {
     id: 'uamx.uam.domain.login.forbidden.message',
     defaultMessage: 'We are sorry, you are not authorized to access to UAMx with an uam.es email.'
-        + 'Please press the ID-UAM button below',
+        + ' Please press the ID-UAM button instead.',
     description: 'Error message for forbidden message with login with an uam.es email',
   }
 });
