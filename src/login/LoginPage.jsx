@@ -263,6 +263,14 @@ const LoginPage = (props) => {
           messageType={activationMsgType}
         />
         {showResetPasswordSuccessBanner && <ResetPasswordSuccess />}
+        <ThirdPartyAuth
+            currentProvider={currentProvider}
+            providers={providers}
+            secondaryProviders={secondaryProviders}
+            handleInstitutionLogin={handleInstitutionLogin}
+            thirdPartyAuthApiStatus={thirdPartyAuthApiStatus}
+            isLoginPage
+          />
         <Form id="sign-in-form" name="sign-in-form">
           <FormGroup
             name="emailOrUsername"
@@ -307,14 +315,6 @@ const LoginPage = (props) => {
           >
             {formatMessage(messages['forgot.password'])}
           </Link>
-          <ThirdPartyAuth
-            currentProvider={currentProvider}
-            providers={providers}
-            secondaryProviders={secondaryProviders}
-            handleInstitutionLogin={handleInstitutionLogin}
-            thirdPartyAuthApiStatus={thirdPartyAuthApiStatus}
-            isLoginPage
-          />
         </Form>
       </div>
     </>
