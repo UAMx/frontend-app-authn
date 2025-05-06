@@ -193,10 +193,50 @@ const LoginPage = (props) => {
 
   if (institutionLogin) {
     return (
-      <InstitutionLogistration
-        secondaryProviders={secondaryProviders}
-        headingTitle={formatMessage(messages['institution.login.page.title'])}
-      />
+      // <InstitutionLogistration
+      //   secondaryProviders={secondaryProviders}
+      //   headingTitle={formatMessage(messages['institution.login.page.title'])}
+      // />
+      <>
+        {(isSocialAuthActive || (isEnterpriseLoginDisabled && isInstitutionAuthActive))
+          && (
+            <div className="mt-4 mb-3 h4">
+              {intl.formatMessage(messages['uamx.uam.domain.registration.other.options.heading'])}
+            </div>
+          )}
+
+        {(!isEnterpriseLoginDisabled && isSocialAuthActive) && (
+          <Hyperlink className="btn btn-link btn-sm text-body p-0 mb-4" destination={this.getEnterPriseLoginURL()}>
+            <Icon src={Institution} className="institute-icon" />
+            {intl.formatMessage(messages['enterprise.login.btn.text'])}
+          </Hyperlink>
+        )}
+
+        {thirdPartyAuthApiStatus === PENDING_STATE ? (
+          <Skeleton className="tpa-skeleton mb-3" height={30} count={2} />
+        ) : (
+          <>
+            {(isEnterpriseLoginDisabled && isInstitutionAuthActive) && (
+              <RenderInstitutionButton
+                onSubmitHandler={this.props.handleInstitutionLogin}
+                buttonTitle={intl.formatMessage(messages['institution.login.button'])}
+              />
+            )}
+            {isSocialAuthActive && (
+              <div className="row m-0">
+                <SocialAuthProviders socialAuthProviders={providers} />
+              </div>
+            )}
+            {(isSocialAuthActive || (isEnterpriseLoginDisabled && isInstitutionAuthActive))
+              && (
+                <>
+                  <hr />
+                  <div class="mt-4 mb-3 h4">{intl.formatMessage(messages['uamx.uam.domain.registration.other.users'])}</div >
+                </>
+              )}
+          </>
+        )}
+      </>
     );
   }
   return (
@@ -223,6 +263,14 @@ const LoginPage = (props) => {
           messageType={activationMsgType}
         />
         {showResetPasswordSuccessBanner && <ResetPasswordSuccess />}
+        <ThirdPartyAuth
+            currentProvider={currentProvider}
+            providers={providers}
+            secondaryProviders={secondaryProviders}
+            handleInstitutionLogin={handleInstitutionLogin}
+            thirdPartyAuthApiStatus={thirdPartyAuthApiStatus}
+            isLoginPage
+          />
         <Form id="sign-in-form" name="sign-in-form">
           <FormGroup
             name="emailOrUsername"
@@ -267,19 +315,67 @@ const LoginPage = (props) => {
           >
             {formatMessage(messages['forgot.password'])}
           </Link>
-          <ThirdPartyAuth
-            currentProvider={currentProvider}
-            providers={providers}
-            secondaryProviders={secondaryProviders}
-            handleInstitutionLogin={handleInstitutionLogin}
-            thirdPartyAuthApiStatus={thirdPartyAuthApiStatus}
-            isLoginPage
-          />
         </Form>
       </div>
     </>
   );
 };
+  //         {this.props.loginError ? <LoginFailureMessage loginError={this.props.loginError} /> : null}
+  //         {thirdPartyAuthContext.errorMessage ? <LoginFailureMessage loginError={tpaAuthenticationError} /> : null}
+  //         {submitState === DEFAULT_STATE && this.state.isSubmitted ? windowScrollTo({ left: 0, top: 0, behavior: 'smooth' }) : null}
+  //         {activationMsgType && <AccountActivationMessage messageType={activationMsgType} />}
+  //         {this.props.resetPassword && !this.props.loginError ? <ResetPasswordSuccess /> : null}
+  //         {this.renderThirdPartyAuth(providers, secondaryProviders, currentProvider, thirdPartyAuthApiStatus, intl)}
+  //         <Form name="sign-in-form" id="sign-in-form">
+  //           <FormGroup
+  //             name="emailOrUsername"
+  //             value={this.state.emailOrUsername}
+  //             autoComplete="on"
+  //             handleChange={(e) => this.setState({ emailOrUsername: e.target.value, isSubmitted: false })}
+  //             handleFocus={this.handleOnFocus}
+  //             handleBlur={this.handleOnBlur}
+  //             errorMessage={this.state.errors.emailOrUsername}
+  //             floatingLabel={intl.formatMessage(messages['login.user.identity.label'])}
+  //           />
+  //           <PasswordField
+  //             name="password"
+  //             value={this.state.password}
+  //             autoComplete="off"
+  //             showRequirements={false}
+  //             handleChange={(e) => this.setState({ password: e.target.value, isSubmitted: false })}
+  //             handleFocus={this.handleOnFocus}
+  //             handleBlur={this.handleOnBlur}
+  //             errorMessage={this.state.errors.password}
+  //             floatingLabel={intl.formatMessage(messages['login.password.label'])}
+  //           />
+  //           <StatefulButton
+  //             name="sign-in"
+  //             id="sign-in"
+  //             type="submit"
+  //             variant="brand"
+  //             className="login-button-width"
+  //             state={submitState}
+  //             labels={{
+  //               default: intl.formatMessage(messages['sign.in.button']),
+  //               pending: '',
+  //             }}
+  //             onClick={this.handleSubmit}
+  //             onMouseDown={(e) => e.preventDefault()}
+  //           />
+  //           <Link
+  //             id="forgot-password"
+  //             name="forgot-password"
+  //             className="btn btn-link font-weight-500 text-body"
+  //             to={updatePathWithQueryParams(RESET_PAGE)}
+  //             onClick={this.handleForgotPasswordLinkClickEvent}
+  //           >
+  //             {intl.formatMessage(messages['forgot.password'])}
+  //           </Link>
+  //         </Form>
+  //       </div>
+  //     </>
+  //   );
+  // }
 
 const mapStateToProps = state => {
   const loginPageState = state.login;
