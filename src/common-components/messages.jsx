@@ -132,6 +132,16 @@ const messages = defineMessages({
     defaultMessage: 'Company or school credentials',
     description: 'Company or school login link text.',
   },
+  'uamx.uam.domain.registration.other.users': {
+    id: 'uamx.uam.domain.registration.other.users',
+    defaultMessage: 'Other users:',
+    description: 'Text to be shown before login form when auth is enabled',
+  },
+  'uamx.uam.domain.registration.other.options.heading': {
+    id: 'uamx.uam.domain.registration.other.options.heading',
+    defaultMessage: 'Users with UAM email:',
+    description: 'A message that appears above ID-UAM third party auth provider',
+  }
 });
 
 export default messages;
