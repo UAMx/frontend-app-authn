@@ -11,6 +11,7 @@ export const NUDGE_PASSWORD_CHANGE = 'nudge-password-change';
 export const REQUIRE_PASSWORD_CHANGE = 'require-password-change';
 export const ALLOWED_DOMAIN_LOGIN_ERROR = 'allowed-domain-login-error';
 export const TPA_AUTHENTICATION_FAILURE = 'tpa-authentication-failure';
+export const UAMX_UAM_DOMAIN_LOGIN_FORBIDDEN = 'uamx__uam-domain-login-forbidden';
 
 // Account Activation Message
 export const ACCOUNT_ACTIVATION_MESSAGE = {

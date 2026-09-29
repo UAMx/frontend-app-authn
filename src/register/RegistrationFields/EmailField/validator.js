@@ -85,6 +85,20 @@ export const validateEmailAddress = (value, username, domainName) => {
     validation.hasError = true;
   }
 
+  /** 
+   * UAM: 
+   * Prevent user register with an email ended with uam.es.
+   * Users with *uam.es emails should use ID-UAM for registation instead.
+   * */ 
+
+  const hasDomainUAM = value.endsWith('uam.es');
+
+  if (hasDomainUAM) {
+    validation.messageKey = 'uamx.uam.domain.register.forbidden.message';
+    validation.type = 'error';
+    validation.hasError = true;
+  }
+
   return validation;
 };
 
@@ -110,7 +124,8 @@ const validateEmail = (value, confirmEmailValue, formatMessage) => {
     } else {
       const response = validateEmailAddress(value, username, domainName);
       if (response.hasError) {
-        fieldError = formatMessage(messages['email.invalid.format.error']);
+        let messageKey = response.messageKey || 'email.invalid.format.error'; 
+        fieldError = formatMessage(messages[messageKey]);
         delete response.hasError;
       }
       emailSuggestion = { ...response };
